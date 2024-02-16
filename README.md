@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # studytime
 
 A new Flutter project.
@@ -14,3 +15,7 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+=======
+# StudyTime
+勉強時間記録アプリ
+>>>>>>> d38208b030bf54d7ab37054af192bf6fcfac1a32
