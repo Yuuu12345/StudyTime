@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "203532315294",
+    "project_id": "studytime-25219",
+    "storage_bucket": "studytime-25219.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:203532315294:android:8ec572c92f20d99172698f",
+        "android_client_info": {
+          "package_name": "com.example.studytime"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAgLN6Yrmgqi0ZYwo3xd5RxT2CVxw7YEY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
