@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:studytime/stopwatch.dart';
+import 'package:studytime/timer.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(TimerApp());
 }
 
 class MyApp extends StatelessWidget {
