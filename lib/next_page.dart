@@ -3,6 +3,7 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:studytime/select_timer.dart';
 
 class SelectSubject extends StatefulWidget {
   const SelectSubject({super.key});
@@ -111,6 +112,12 @@ class _SelectSubjectState extends State<SelectSubject> {
                           document.data() as Map<String, dynamic>;
                       // 正しく return を使ってウィジェットを返す
                       return ListTile(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => selectApp()));
+                          },
                           title: Text(data['text'] ?? 'テキストがありません'),
                           subtitle: Text('カラーID: ${data['color'].toString()}'),
                           leading: ElevatedButton(
