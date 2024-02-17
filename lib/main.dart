@@ -4,11 +4,10 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-Future<void> main() async {
-  await Firebase.initializeApp();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
-}
-
 
 class MyApp extends StatelessWidget {
     const MyApp({super.key});
@@ -100,8 +99,7 @@ class piechartSample extends StatelessWidget {
               width: 200,
               height: 50,
               child: ElevatedButton(
-                child: const Text('記録する'),
-                
+                child: const Text('記録する'),                
                 onPressed: () {
                 Navigator.push(
                   context,
