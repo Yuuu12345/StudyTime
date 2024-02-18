@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'dart:async';
+import 'package:studytime/main.dart';
 
-// class StopwatchApp extends StatelessWidget {
-//   const StopwatchApp({super.key});
+class StopwatchApp extends StatelessWidget {
+  const StopwatchApp({Key? key}) : super(key: key);
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return const MaterialApp(
-//       title: 'Stopwatch App',
-//       home: StopwatchScreen(),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Stopwatch App',
+      home: StopwatchScreen(),
+    );
+  }
+}
 
 class StopwatchScreen extends StatefulWidget {
-  const StopwatchScreen({super.key});
+  const StopwatchScreen({Key? key}) : super(key: key);
 
   @override
   _StopwatchScreenState createState() => _StopwatchScreenState();
@@ -59,7 +64,7 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
   }
 
   void _updateStopwatch() {
-    Future.delayed(const Duration(milliseconds: 30), () {
+    Future.delayed(Duration(milliseconds: 30), () {
       if (_isRunning) {
         setState(() {
           _elapsedTime = _stopwatch.elapsed;
@@ -75,7 +80,7 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ストップウォッチ'),
+        title: Text('Stopwatch'),
       ),
       body: Center(
         child: Column(
@@ -84,25 +89,54 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
           children: <Widget>[
             Text(
               formattedTime,
-              style: const TextStyle(fontSize: 48.0),
+              style: TextStyle(fontSize: 48.0),
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 ElevatedButton(
                   onPressed: _toggleStopwatch,
-                  child: Text(_isRunning ? 'ストップ' : 'スタート'),
+                  child: Text(_isRunning ? 'Stop' : 'Start'),
                 ),
-                const SizedBox(width: 20),
+                SizedBox(width: 20),
                 ElevatedButton(
                   onPressed: _resetStopwatch,
-                  child: const Text('リセット'),
+                  child: Text('Reset'),
                 ),
               ],
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          await FirebaseFirestore.instance.collection('user').doc('time').set({
+            'time': _elapsedTime.inSeconds
+          }); // assuming you want to store seconds
+          _resetStopwatch(); // Reset the stopwatch after saving the time
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text('勉強時間を記録しました'),
+                actions: [
+                  ElevatedButton(
+                    child: Text('完了'),
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const StopwatchApp()),
+                      );
+                    },
+                  )
+                ],
+              );
+            },
+          );
+        },
+        child: Text('実行'),
       ),
     );
   }
