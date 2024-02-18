@@ -18,13 +18,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme:
             ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 6, 159, 19)),
         useMaterial3: true,
       ),
-      home: const piechartSample(),
+      home: piechartSample(),
     );
   }
 }
@@ -94,7 +93,11 @@ class piechartSample extends StatelessWidget {
           return null!;
       }
     });
-  }
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: const Text('勉強時間記録アプリ'),
+      ),
       body: Center(
         child: Column(children: [
           SizedBox(
@@ -123,14 +126,8 @@ class piechartSample extends StatelessWidget {
                 ),
               ),
             ),
-          ),
-        ]),
+          ]),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
