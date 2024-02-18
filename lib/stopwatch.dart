@@ -5,20 +5,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'dart:async';
 import 'package:studytime/main.dart';
 
-class StopwatchApp extends StatelessWidget {
-  const StopwatchApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Stopwatch App',
-      home: StopwatchScreen(),
-    );
-  }
-}
-
 class StopwatchScreen extends StatefulWidget {
-  const StopwatchScreen({Key? key}) : super(key: key);
+  final String docId;
+  const StopwatchScreen({Key? key, required this.docId}) : super(key: key);
 
   @override
   _StopwatchScreenState createState() => _StopwatchScreenState();
@@ -97,12 +86,12 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
               children: <Widget>[
                 ElevatedButton(
                   onPressed: _toggleStopwatch,
-                  child: Text(_isRunning ? 'Stop' : 'Start'),
+                  child: Text(_isRunning ? 'ストップ' : 'スタート'),
                 ),
                 SizedBox(width: 20),
                 ElevatedButton(
                   onPressed: _resetStopwatch,
-                  child: Text('Reset'),
+                  child: Text('リセット'),
                 ),
               ],
             ),
@@ -111,8 +100,11 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          await FirebaseFirestore.instance.collection('user').doc('time').set({
-            'time': _elapsedTime.inSeconds
+          await FirebaseFirestore.instance
+              .collection('subject')
+              .doc(widget.docId)
+              .update({
+            'time': _elapsedTime.toString()
           }); // assuming you want to store seconds
           _resetStopwatch(); // Reset the stopwatch after saving the time
           showDialog(
@@ -126,8 +118,7 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
                     onPressed: () {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) => const StopwatchApp()),
+                        MaterialPageRoute(builder: (context) => const MyApp()),
                       );
                     },
                   )

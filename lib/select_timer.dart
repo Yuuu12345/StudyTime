@@ -3,16 +3,11 @@ import 'package:studytime/manual.dart';
 import 'package:studytime/stopwatch.dart';
 import 'package:studytime/timer.dart';
 
-// void main() {
-//   runApp(const selectApp());
-// }
-
 class selectApp extends StatelessWidget {
-final String docId; // この行でselectedButtonを定義
+  final String docId; // この行でdocIdを定義
 
-  // コンストラクタでselectedButtonを受け取る
-const selectApp({Key? key, required this.docId}) : super(key: key);
-  // const selectApp({super.key});
+  // コンストラクタでdocIdを受け取る
+  const selectApp({Key? key, required this.docId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +25,7 @@ const selectApp({Key? key, required this.docId}) : super(key: key);
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const StopwatchScreen(),
+                    builder: (context) => StopwatchScreen(docId: docId),
                   ),
                 );
               },
@@ -38,20 +33,23 @@ const selectApp({Key? key, required this.docId}) : super(key: key);
             ),
             SizedBox(height: 40),
             ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => TimerScreen(docId: docId)));
-                },
-                child: const Text('タイマー')),
-                SizedBox(height: 40,),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => TimerScreen(docId: docId),
+                  ),
+                );
+              },
+              child: const Text('タイマー'),
+            ),
+            SizedBox(height: 40),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const TimeRangePickerScreen(),
+                    builder: (context) => TimeRangePickerScreen(docId: docId),
                   ),
                 );
               },
