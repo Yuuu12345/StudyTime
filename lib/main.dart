@@ -104,25 +104,27 @@ class piechartSample extends StatelessWidget {
               child: ElevatedButton(
                 child: const Text('記録する'),
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SelectSubject()),
-                  );
-                },
-              )),
-          const Text('円グラフ'),
-          SizedBox(
-            width: 200,
-            height: 150,
-            child: PieChart(
-              PieChartData(
-                sectionsSpace: 0,
-                centerSpaceRadius: 20,
-                sections: sections,
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SelectSubject()),
+                );
+              },
+              )
+            ),
+            const Text('円グラフ'),
+            SizedBox(
+              width:200,
+              height:300,
+              
+              child:PieChart(
+                PieChartData(
+                  sectionsSpace: 0,
+                  centerSpaceRadius:15,
+                  sections: sections,
+                ),
               ),
             ),
-          ),
-        ]),
+          ]),
       ),
     );
   }
