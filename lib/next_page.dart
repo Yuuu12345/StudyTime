@@ -111,25 +111,34 @@ class _SelectSubjectState extends State<SelectSubject> {
                       DocumentSnapshot document = snapshot.data!.docs[index];
                       Map<String, dynamic> data =
                           document.data() as Map<String, dynamic>;
-                      // 正しく return を使ってウィジェットを返す
                       return ListTile(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const selectApp()));
+                        },
+                        title: Text(data['text']),
+                        leading: ElevatedButton(
+                          onPressed: () => showColorPicker(document.id),
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: _parseColor(data['color']),
+                              minimumSize: const Size(40, 40),
+                              padding: EdgeInsets.zero,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20))),
+                          child: const Text(''),
+                        ),
+                        trailing: GestureDetector(
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const selectApp()));
+                            FirebaseFirestore.instance
+                                .collection('subject')
+                                .doc(document.id)
+                                .delete();
                           },
-                          title: Text(data['text']),
-                          leading: ElevatedButton(
-                            onPressed: () => showColorPicker(document.id),
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: _parseColor(data['color']),
-                                minimumSize: const Size(40, 40),
-                                padding: EdgeInsets.zero,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20))),
-                            child: const Text(''),
-                          ));
+                          child: Text('➖'),
+                        ),
+                      );
                     },
                   );
                 },
