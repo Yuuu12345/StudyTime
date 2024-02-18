@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 
-class StopwatchApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Stopwatch App',
-      home: StopwatchScreen(),
-    );
-  }
-}
+// class StopwatchApp extends StatelessWidget {
+//   const StopwatchApp({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return const MaterialApp(
+//       title: 'Stopwatch App',
+//       home: StopwatchScreen(),
+//     );
+//   }
+// }
 
 class StopwatchScreen extends StatefulWidget {
+  const StopwatchScreen({super.key});
+
   @override
   _StopwatchScreenState createState() => _StopwatchScreenState();
 }
@@ -55,7 +59,7 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
   }
 
   void _updateStopwatch() {
-    Future.delayed(Duration(milliseconds: 30), () {
+    Future.delayed(const Duration(milliseconds: 30), () {
       if (_isRunning) {
         setState(() {
           _elapsedTime = _stopwatch.elapsed;
@@ -71,7 +75,7 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Stopwatch'),
+        title: const Text('ストップウォッチ'),
       ),
       body: Center(
         child: Column(
@@ -80,20 +84,20 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
           children: <Widget>[
             Text(
               formattedTime,
-              style: TextStyle(fontSize: 48.0),
+              style: const TextStyle(fontSize: 48.0),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 ElevatedButton(
                   onPressed: _toggleStopwatch,
-                  child: Text(_isRunning ? 'Stop' : 'Start'),
+                  child: Text(_isRunning ? 'ストップ' : 'スタート'),
                 ),
-                SizedBox(width: 20),
+                const SizedBox(width: 20),
                 ElevatedButton(
                   onPressed: _resetStopwatch,
-                  child: Text('Reset'),
+                  child: const Text('リセット'),
                 ),
               ],
             ),

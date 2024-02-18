@@ -3,7 +3,7 @@ import 'package:studytime/stopwatch.dart';
 import 'package:studytime/timer.dart';
 
 void main() {
-  runApp(selectApp());
+  runApp(const selectApp());
 }
 
 class selectApp extends StatelessWidget {
@@ -12,28 +12,43 @@ class selectApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(title: Text('記録形式')),
         body: Center(
-            child: Row(
-      children: [
-        ElevatedButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => StopwatchScreen()));
-            },
-            child: Text('ストップウォッチ')),
-        ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => TimerApp()));
-            },
-            child: Text('タイマー')),
-        ElevatedButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => StopwatchScreen()));
-            },
-            child: Text('手動'))
-      ],
-    )));
+            child: Column(
+          children: [
+            Spacer(),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const StopwatchScreen()));
+                },
+                child: const Text('ストップウォッチ')),
+            SizedBox(
+              height: 40,
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const TimerScreen()));
+                },
+                child: const Text('タイマー')),
+            SizedBox(
+              height: 40,
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const StopwatchScreen()));
+                },
+                child: const Text('手動')),
+            Spacer()
+          ],
+        )));
   }
 }

@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
@@ -76,7 +74,10 @@ class _SelectSubjectState extends State<SelectSubject> {
   Color nowcolor = Colors.red;
   void sendMessage() async {
     if (controller.text.isNotEmpty) {
-      await FirebaseFirestore.instance.collection('subject').add({
+      await FirebaseFirestore.instance
+          .collection('subject')
+          .doc(controller.text)
+          .set({
         'text': controller.text,
         'color': nowcolor.value,
         // 'timestamp': FieldValue.serverTimestamp(),
@@ -116,19 +117,18 @@ class _SelectSubjectState extends State<SelectSubject> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => selectApp()));
+                                    builder: (context) => const selectApp()));
                           },
-                          title: Text(data['text'] ?? 'テキストがありません'),
-                          subtitle: Text('カラーID: ${data['color'].toString()}'),
+                          title: Text(data['text']),
                           leading: ElevatedButton(
                             onPressed: () => showColorPicker(document.id),
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: _parseColor(data['color']),
-                                minimumSize: Size(40, 40),
+                                minimumSize: const Size(40, 40),
                                 padding: EdgeInsets.zero,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20))),
-                            child: Text(''),
+                            child: const Text(''),
                           ));
                     },
                   );
