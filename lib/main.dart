@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
 class piechartSample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-  //  Future<void> get() async {
+    //Future<void> get() async {
   //CollectionReference collection = FirebaseFirestore.instance.collection('subject');
   //QuerySnapshot querySnapshot = await collection.get();
   //int documentCount = querySnapshot.size;
