@@ -4,6 +4,7 @@ import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:studytime/select_timer.dart';
 import 'package:studytime/stopwatch.dart';
 import 'package:studytime/timer.dart';
+import 'package:studytime/manual.dart';
 
 class SelectSubject extends StatefulWidget {
   const SelectSubject({super.key});
