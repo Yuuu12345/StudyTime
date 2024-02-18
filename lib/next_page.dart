@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:studytime/select_timer.dart';
 import 'package:studytime/stopwatch.dart';
 import 'package:studytime/timer.dart';
 
@@ -117,7 +118,7 @@ class _SelectSubjectState extends State<SelectSubject> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const select()));
+                                  builder: (context) => const selectApp()));
                         },
                         title: Text(data['text']),
                         leading: ElevatedButton(
