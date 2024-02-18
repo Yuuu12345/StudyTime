@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:studytime/next_page.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-import 'package:studytime/stopwatch.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,19 +17,21 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         colorScheme:
-            ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 6, 159, 19)),
+            ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 6, 159, 19)),
         useMaterial3: true,
       ),
-      home: piechartSample(),
+      home: const piechartSample(),
     );
   }
 }
 
 class piechartSample extends StatelessWidget {
+  const piechartSample({super.key});
+
   @override
   Widget build(BuildContext context) {
     List<PieChartSectionData> sections = List.generate(6, (index) {
-      final double radius = 50;
+      const double radius = 50;
       switch (index) {
         case 0:
           return PieChartSectionData(
@@ -39,7 +39,7 @@ class piechartSample extends StatelessWidget {
             value: 40,
             title: 'sample1',
             radius: radius,
-            titleStyle: TextStyle(
+            titleStyle: const TextStyle(
                 fontSize: 8, fontWeight: FontWeight.bold, color: Colors.white),
           );
         case 1:
@@ -48,7 +48,7 @@ class piechartSample extends StatelessWidget {
             value: 20,
             title: 'sample2',
             radius: radius,
-            titleStyle: TextStyle(
+            titleStyle: const TextStyle(
                 fontSize: 8, fontWeight: FontWeight.bold, color: Colors.white),
           );
         case 2:
@@ -57,7 +57,7 @@ class piechartSample extends StatelessWidget {
             value: 15,
             title: 'sample3',
             radius: radius,
-            titleStyle: TextStyle(
+            titleStyle: const TextStyle(
                 fontSize: 8, fontWeight: FontWeight.bold, color: Colors.white),
           );
         case 3:
@@ -66,7 +66,7 @@ class piechartSample extends StatelessWidget {
             value: 10,
             title: 'sample4',
             radius: radius,
-            titleStyle: TextStyle(
+            titleStyle: const TextStyle(
                 fontSize: 8, fontWeight: FontWeight.bold, color: Colors.white),
           );
         case 4:
@@ -75,7 +75,7 @@ class piechartSample extends StatelessWidget {
             value: 10,
             title: 'sample5',
             radius: radius,
-            titleStyle: TextStyle(
+            titleStyle: const TextStyle(
                 fontSize: 8, fontWeight: FontWeight.bold, color: Colors.white),
           );
         case 5:
@@ -84,7 +84,7 @@ class piechartSample extends StatelessWidget {
               value: 5,
               title: 'sample6',
               radius: radius,
-              titleStyle: TextStyle(
+              titleStyle: const TextStyle(
                   fontSize: 8,
                   fontWeight: FontWeight.bold,
                   color: Colors.white));
@@ -107,7 +107,7 @@ class piechartSample extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => SelectSubject()),
+                    MaterialPageRoute(builder: (context) => const SelectSubject()),
                   );
                 },
               )),
