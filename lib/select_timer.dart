@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:studytime/stopwatch.dart';
 import 'package:studytime/timer.dart';
 
-void main() {
-  runApp(const selectApp());
-}
+// void main() {
+//   runApp(const selectApp());
+// }
 
 class selectApp extends StatelessWidget {
-  const selectApp({super.key});
+final String docId; // この行でselectedButtonを定義
+
+  // コンストラクタでselectedButtonを受け取る
+const selectApp({Key? key, required this.docId}) : super(key: key);
+  // const selectApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,12 +37,10 @@ class selectApp extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const TimerScreen()));
+                          builder: (context) => TimerScreen(docId: docId)));
                 },
                 child: const Text('タイマー')),
-            SizedBox(
-              height: 40,
-            ),
+                SizedBox(height: 40,),
             ElevatedButton(
                 onPressed: () {
                   Navigator.push(
