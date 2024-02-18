@@ -120,7 +120,7 @@ class piechartSample extends StatelessWidget {
               child:PieChart(
                 PieChartData(
                   sectionsSpace: 0,
-                  centerSpaceRadius:20,
+                  centerSpaceRadius:15,
                   sections: sections,
                 ),
               ),
