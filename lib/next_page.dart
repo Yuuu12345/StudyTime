@@ -13,12 +13,12 @@ class SelectSubject extends StatefulWidget {
 }
 
 class _SelectSubjectState extends State<SelectSubject> {
-  Future<void> addUser(String userId, Map<String, dynamic> userData) async {
-    await FirebaseFirestore.instance
-        .collection('users')
-        .doc(userId)
-        .set(userData);
-  }
+  // Future<void> addUser(String userId, Map<String, dynamic> userData) async {
+  //   await FirebaseFirestore.instance
+  //       .collection('users')
+  //       .doc(userId)
+  //       .set(userData);
+  // }
 
   Color _parseColor(dynamic colorValue) {
     // Firestoreから取得したcolorが整数型の場合の処理
@@ -82,7 +82,7 @@ class _SelectSubjectState extends State<SelectSubject> {
           .doc(controller.text)
           .set({
         'text': controller.text,
-        'color': nowcolor.value,
+        'color': '#${nowcolor.value.toRadixString(16).padLeft(8, '0')}',
         // 'timestamp': FieldValue.serverTimestamp(),
       });
       controller.clear();
@@ -119,7 +119,8 @@ class _SelectSubjectState extends State<SelectSubject> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const selectApp()));
+                                  builder: (context) =>
+                                      selectApp(docId: document.id)));
                         },
                         title: Text(data['text']),
                         leading: ElevatedButton(
@@ -149,6 +150,10 @@ class _SelectSubjectState extends State<SelectSubject> {
             ),
             TextField(
               controller: controller,
+            ),
+            ElevatedButton(
+              onPressed: sendMessage,
+              child: const Text('送信'),
             ),
           ],
         ),

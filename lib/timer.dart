@@ -18,7 +18,12 @@ import 'package:studytime/main.dart';
 // }
 
 class TimerScreen extends StatefulWidget {
-  const TimerScreen({super.key});
+  // const TimerScreen({super.key});
+
+  final String docId; // この行でselectedButtonを定義
+
+  // コンストラクタでselectedButtonを受け取る
+  const TimerScreen({Key? key, required this.docId}) : super(key: key);
 
   @override
   _TimerScreenState createState() => _TimerScreenState();
@@ -205,9 +210,9 @@ class _TimerScreenState extends State<TimerScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           await FirebaseFirestore.instance
-              .collection('user')
-              .doc('time')
-              .set({'time': _counttime});
+              .collection('subject')
+              .doc(widget.docId)
+              .update({'time': _counttime.toString()});
           await resetTimer;
           await showDialog(
               context: context,
