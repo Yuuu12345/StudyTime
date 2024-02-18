@@ -117,7 +117,7 @@ class _SelectSubjectState extends State<SelectSubject> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const selectApp()));
+                                  builder: (context) => const select()));
                         },
                         title: Text(data['text']),
                         leading: ElevatedButton(
@@ -155,7 +155,7 @@ class _SelectSubjectState extends State<SelectSubject> {
               onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => StopwatchApp()),
+                MaterialPageRoute(builder: (context) => StopwatchScreen()),
               );
               },
                 ),
@@ -164,7 +164,7 @@ class _SelectSubjectState extends State<SelectSubject> {
               onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => TimerApp()),
+                MaterialPageRoute(builder: (context) => TimerScreen()),
               );
               }
                 ),
