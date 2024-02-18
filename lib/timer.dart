@@ -5,17 +5,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'dart:async';
 import 'package:studytime/main.dart';
 
-// class TimerApp extends StatelessWidget {
-//   const TimerApp({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return const MaterialApp(
-//       title: 'Timer',
-//       home: TimerScreen(),
-//     );
-//   }
-// }
 
 class TimerScreen extends StatefulWidget {
   // const TimerScreen({super.key});

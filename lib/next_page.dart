@@ -150,11 +150,17 @@ class _SelectSubjectState extends State<SelectSubject> {
             ),
             TextField(
               controller: controller,
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(), labelText: '科目を入力してください'),
+            ),
+            SizedBox(
+              height: 20,
             ),
             ElevatedButton(
               onPressed: sendMessage,
               child: const Text('送信'),
             ),
+            SizedBox(height: 10)
           ],
         ),
       ),
