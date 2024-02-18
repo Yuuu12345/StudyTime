@@ -3,21 +3,30 @@ import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:studytime/main.dart';
 
 class TimeRangePicker extends StatelessWidget {
-  const TimeRangePicker({Key? key}) : super(key: key);
+  // const TimeRangePicker({Key? key}) : super(key: key);
+  final String? docId; // nullableにすることもできる
+
+  const TimeRangePicker({Key? key, this.docId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Manual App',
-      home: TimeRangePickerScreen(),
+      home: TimeRangePickerScreen(docId: docId!),
     );
   }
 }
 
 class TimeRangePickerScreen extends StatefulWidget {
-  const TimeRangePickerScreen({Key? key}) : super(key: key);
+  // const TimeRangePickerScreen({Key? key}) : super(key: key);
+  final String docId; // この行でselectedButtonを定義
+
+  // コンストラクタでselectedButtonを受け取る
+  const TimeRangePickerScreen({Key? key, required this.docId})
+      : super(key: key);
 
   @override
   _TimeRangePickerScreenState createState() => _TimeRangePickerScreenState();
@@ -74,6 +83,7 @@ class _TimeRangePickerScreenState extends State<TimeRangePickerScreen> {
               },
               child: Text('開始時間を選択'),
             ),
+            SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
                 _selectEndTime(context);
@@ -88,7 +98,10 @@ class _TimeRangePickerScreenState extends State<TimeRangePickerScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          await FirebaseFirestore.instance.collection('user').doc('time').set({
+          await FirebaseFirestore.instance
+              .collection('subject')
+              .doc(widget.docId)
+              .update({
             'startTime': _startTime.format(context),
             'endTime': _endTime.format(context),
           });
@@ -101,7 +114,10 @@ class _TimeRangePickerScreenState extends State<TimeRangePickerScreen> {
                   ElevatedButton(
                     child: Text('完了'),
                     onPressed: () {
-                      Navigator.of(context).pop();
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const MyApp()));
                     },
                   )
                 ],

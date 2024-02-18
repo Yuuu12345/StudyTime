@@ -8,10 +8,10 @@ import 'package:studytime/timer.dart';
 // }
 
 class selectApp extends StatelessWidget {
-final String docId; // この行でselectedButtonを定義
+  final String docId; // この行でselectedButtonを定義
 
   // コンストラクタでselectedButtonを受け取る
-const selectApp({Key? key, required this.docId}) : super(key: key);
+  const selectApp({Key? key, required this.docId}) : super(key: key);
   // const selectApp({super.key});
 
   @override
@@ -36,7 +36,7 @@ const selectApp({Key? key, required this.docId}) : super(key: key);
               },
               child: const Text('ストップウォッチ'),
             ),
-            SizedBox(height: 40),
+            SizedBox(height: 20),
             ElevatedButton(
                 onPressed: () {
                   Navigator.push(
@@ -45,13 +45,15 @@ const selectApp({Key? key, required this.docId}) : super(key: key);
                           builder: (context) => TimerScreen(docId: docId)));
                 },
                 child: const Text('タイマー')),
-                SizedBox(height: 40,),
+            SizedBox(
+              height: 20,
+            ),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const TimeRangePickerScreen(),
+                    builder: (context) => TimeRangePickerScreen(docId: docId),
                   ),
                 );
               },
