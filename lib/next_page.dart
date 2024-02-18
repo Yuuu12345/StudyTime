@@ -1,8 +1,9 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:studytime/stopwatch.dart';
+import 'package:studytime/timer.dart';
+
 
 class SelectSubject extends StatefulWidget {
   const SelectSubject({super.key});
@@ -119,10 +120,28 @@ class _SelectSubjectState extends State<SelectSubject> {
             TextField(
               controller: controller,
             ),
-            ElevatedButton(
-              onPressed: sendMessage,
-              child: const Text('送信'),
-            ),
+            Row(
+              children: [
+                ElevatedButton(
+              child: const Text('ストップウォッチで測る'),
+              onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => StopwatchApp()),
+              );
+              },
+                ),
+                ElevatedButton(
+              child: const Text('タイマーで測る'),
+              onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => TimerApp()),
+              );
+              }
+                ),
+              ]
+            ),  
           ],
         ),
       ),

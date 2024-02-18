@@ -5,6 +5,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
+
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -70,7 +72,7 @@ class piechartSample extends StatelessWidget {
         case 4:
          return PieChartSectionData(
           color: Colors.purple,
-          value: 10,
+          value: 100-90,
           title: 'sample5',
           radius: radius,
           titleStyle: TextStyle(
@@ -113,7 +115,7 @@ class piechartSample extends StatelessWidget {
             const Text('円グラフ'),
             SizedBox(
               width:200,
-              height:150,
+              height:300,
               
               child:PieChart(
                 PieChartData(
